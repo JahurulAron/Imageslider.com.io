@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jQuery Crash Course | Ajax</title>
+
+	<style>
+		body{
+			font-size: 17px;
+			font-family: arial;
+			background: #f4f4f4;
+			line-height: 1.5em;
+			text-align: center;
+		}
+		
+		li{
+		text-decoration-style:disc; 
+		}
+		header{
+			background:#333;
+			color:#fff;
+			padding:20px;
+			text-align: center;
+			border-bottom: 4px #000 solid;
+			margin-bottom: 10px;
+		}
+		#container{
+			width:90%;
+			margin:auto;
+			padding:10px;
+		}
+#result{
+	display: inline-block;
+}
+	</style>
+</head>
+<body>
+	<header>
+		<h1>How manay student study in spo16 </h1>
+	</header>
+	<div id="container">
+		<div id="result"></div>
+		<!--<ul id="users"></ul>
+		<h3>Add Post</h3>
+		<form id="postForm" action="https://jsonplaceholder.typicode.com/posts">
+		<input type="text" id="title" placeholder="Title"><br>
+		<textarea placeholder="Body" id="body"></textarea><br>
+		<input type="submit" value="Submit">
+		</form>-->
+	</div>
+	<div id="container">
+		<div id="result"></div>
+	</div>
+    <script
+  src="https://code.jquery.com/jquery-3.1.1.js"
+  integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+  crossorigin="anonymous"></script>
+	<script>
+		$(document).ready(function(){
+			updateDiv();
+							  $("#result").fadeIn(5000);
+			$("#result").fadeOut(5000);
+			//var interval = setInterval(updateDiv,3000);
+			//var interval=setInterval(window.location.reload(), 40000000);
+			 setInterval(function(){cache_clear()},5000);
+			 		 function cache_clear()
+					  	{
+			
+ 							window.location.reload(true);
+						  }
+
+			});
+			/*
+			$('#result').load('test.html', function(responseTxt, statusTxt, xhr){
+				if(statusTxt == "success"){
+					alert('It went fine');
+				} else if(statusTxt == "error"){
+					alert("Error: "+xhr.statusText);
+				}
+			});
+			
+		
+
+			
+			$.get('test.html', function(data){
+				$('#result').html(data);
+			});
+	
+	
+			
+			$.getJSON('users.json', function(data){
+				$.each(data, function(i, user){
+						var i=Math.floor(Math.random()*user.length);
+					$('ul#users').append('<li>'+user[i].firstName+'</li>');
+				});
+			});
+				*/
+				 function updateDiv(){
+
+			$.getJSON('user.json', function(data){
+			
+						var i=Math.floor(Math.random()*data.length);
+					
+						//$('#result').append(' <p> <img src="${data[i].photo}"></p>');		
+							$('#result').append('<img src= "'+data[i].photo+'">');	
+								$('#result').append('<li>'+'First Name:'+data[i].firstName+'</li>');
+								$('#result').append('<li>'+'Last  Name:'+data[i].lastName+'</li>');
+						$('#result').append('<li>'+'Email  Id:'+data[i].email+'</li>');
+							
+							
+			
+
+			
+			/*
+			
+
+			$.ajax({
+				method:'GET',
+				url: 'https://jsonplaceholder.typicode.com/posts',
+				dataType: 'json'
+			}).done(function(data){
+				console.log(data);
+				$.each(data, function(post, i){
+					$('#result').append('<h3>'+i.title+'</h3><p>'+i.body+'</p>');
+					if(post===2){
+						return false;
+					}
+				});
+			});
+			$.ajax({
+				method:'GET',
+				url: 'https://jsonplaceholder.typicode.com/comments',
+				dataType: 'json'
+			}).done(function(data){
+				console.log(data);
+				$.each(data, function(post, i){
+					$('#result1').append('<h3>'+i.email+'</h3><p>'+i.body+'</p>');
+					if(post==2){
+						return false;
+					}
+				});
+			});
+		
+/*
+			$('#postForm').submit(function(e){
+				e.preventDefault();
+
+				var title = $('#title').val();
+				var body = $('#body').val();
+				var url = $(this).attr('action');
+
+				$.post(url, {title:title, body:body}).done(function(data){
+					console.log('Post Saved');
+					console.log(data);
+				});
+			});
+				*/
+		});
+		 
+				 }
+		 
+	</script>
+</body>
+</html>
